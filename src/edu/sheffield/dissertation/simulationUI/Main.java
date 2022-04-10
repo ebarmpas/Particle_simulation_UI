@@ -12,8 +12,11 @@ public class Main extends PApplet {
 
 	SimulationConfiguration simConf;
 	ButtonMap buttons;
+	FileReader fileReader;
+	Thread fileReaderThread;
 	List<Step> steps;
 	Button test;
+	
 	int currentStep, delay, maxDelay;
 	
 	
@@ -26,13 +29,10 @@ public class Main extends PApplet {
         background(0);
         
         JFileChooser chooser = new JFileChooser();
-        FileNameExtensionFilter filter = new FileNameExtensionFilter(
-            ".psc files", "psc");
-        chooser.setFileFilter(filter);
+        chooser.setFileFilter(new FileNameExtensionFilter(".psc files", "psc"));
         if(chooser.showOpenDialog(null) == JFileChooser.APPROVE_OPTION) {
         	try {
      			simConf = new SimulationConfiguration(chooser.getSelectedFile());
-     			steps = FileReader.parseParticles(simConf);
      		} catch (FileNotFoundException e) {
      			e.printStackTrace();
      			exit();
@@ -40,6 +40,16 @@ public class Main extends PApplet {
                 
         } else
         	exit();
+        
+        fileReader = new FileReader(simConf);
+        fileReaderThread = new Thread(fileReader);
+        
+        fileReaderThread.start();
+        
+        steps = fileReader.getValue();
+        
+        surface.setTitle("Particle Simulation / " + simConf.getAppName());
+        
         
         buttons = new ButtonMap(this);
         buttons.addButton("paused",' ');
@@ -49,13 +59,9 @@ public class Main extends PApplet {
         maxDelay = 10;
         currentStep = 0;
         
-        
     }
  
     public void draw(){
-    	
-    	
-   
     
     if(frameCount % 3 == 0 && !buttons.isPressed("paused")) {
     	
