@@ -12,13 +12,12 @@ public class Main extends PApplet {
 
 	SimulationConfiguration simConf;
 	ButtonMap buttons;
+	
 	FileReader fileReader;
 	Thread fileReaderThread;
+	
 	List<Step> steps;
-	Button test;
-	
 	int currentStep, delay, maxDelay;
-	
 	
     public void setup(){
         frameRate(60);
@@ -58,6 +57,10 @@ public class Main extends PApplet {
         delay = 0;
         maxDelay = 10;
         currentStep = 0;
+
+        colorMode(HSB, simConf.getSpeciesNumber(), 255, 255);
+
+        
         
     }
  
@@ -66,13 +69,12 @@ public class Main extends PApplet {
     if(frameCount % 3 == 0 && !buttons.isPressed("paused")) {
     	
     	background(0);
-    	stroke(255,0,0);
     	strokeWeight(10);
     	
     	List<Particle> p = steps.get(currentStep).getParticles();
 
     	for(int i = 0; i < p.size(); i++) {
-    		stroke(255, 0 ,0);
+    		stroke(p.get(i).getSpecies(), 255 , 255);
     		point(p.get(i).getLocation().x, p.get(i).getLocation().y);
     	}
     	if(buttons.isPressed("rewind"))

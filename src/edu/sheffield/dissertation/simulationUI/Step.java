@@ -31,7 +31,8 @@ public class Step extends PApplet{
 			while(scan.hasNext()) {
 				JSONObject p = parseJSONObject(scan.nextLine());	
 				JSONObject loc = p.getJSONObject("location");
-				particles.add(new Particle(new PVector(loc.getFloat("x"), loc.getFloat("y"))));
+				int species = p.getInt("species");
+				particles.add(new Particle(new PVector(loc.getFloat("x"), loc.getFloat("y")), species));
 			}
 			scan.close();
 		}

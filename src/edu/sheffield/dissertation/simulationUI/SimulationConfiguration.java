@@ -96,6 +96,9 @@ public class SimulationConfiguration implements Serializable{
 		return getDouble("ReproductionChance");
 	}
 	
+	public int getSpeciesNumber() {
+		return (int) simulationSettings.get("SpeciesNumber");
+	}
 	//Prints the contents of the configuration file as a table.
 	public void print() {
 		final int margin = 4;
