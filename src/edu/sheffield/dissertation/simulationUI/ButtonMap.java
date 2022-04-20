@@ -16,6 +16,10 @@ public class ButtonMap {
 		buttons.put(key, new Button(value, p));
 	}
 	
+	public void addButton(String key, char value, boolean isPressed) {
+		buttons.put(key, new Button(value, isPressed, p));
+	}
+	
 	public boolean isPressed(String key) {
 		return buttons.get(key).isPressed();
 	}

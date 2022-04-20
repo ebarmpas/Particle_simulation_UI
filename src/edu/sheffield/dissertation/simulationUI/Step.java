@@ -41,7 +41,4 @@ public class Step extends PApplet{
 		return particles;
 	}
 
-	
-	
-	
 }

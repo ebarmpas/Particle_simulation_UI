@@ -18,6 +18,13 @@ public class Button {
 		delay = 0;
 		maxDelay = 16;
 	}
+	public Button(char assignedKey, boolean isPressed, PApplet p) {
+		this.p = p;
+		this.assignedKey = assignedKey;
+		this.isPressed = isPressed;
+		delay = 0;
+		maxDelay = 16;
+	}
 
 	public boolean isPressed() {
 		
