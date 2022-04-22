@@ -16,8 +16,10 @@ import processing.core.PApplet;
 	private Thread fileReaderThread;
 	
 	protected List<Step> steps;
-	public int currentStep;
+	protected int currentStep;
 		
+	protected ButtonAppearance simulationControlButtonAppearance;
+	
     public void setup(){
         frameRate(120);
         surface.setTitle("Particle Simulation");
@@ -33,7 +35,7 @@ import processing.core.PApplet;
      		}
         }
         if(simConf != null) {
-        	                	
+        	
         	surface.setTitle("Particle Simulation / " + simConf.getAppName());
         	
         	FileReader fileReader = new FileReader(simConf);
@@ -42,20 +44,18 @@ import processing.core.PApplet;
 	        steps = fileReader.getValue();
 	        buttons = new ButtonMap(this);
 	        
-	        buttons.addButton("paused",' ', true);
-	        buttons.addButton("rewind", 'r');
-
+	        setupUserInterface();
+	        
 	        currentStep = 0;
 	     	        
 	        colorMode(HSB, simConf.getSpeciesNumber(), 255, 255);
-	        rectMode(CORNER);
         }else
         	exit();
     }
  
     public void draw(){
     	
-    	if(frameCount % 3 == 0 && !buttons.isPressed("paused")) {
+    	if(frameCount % 3 == 0 && !buttons.isPressed("PAUSE")) {
     		
     		List<Particle> p = steps.get(currentStep).getParticles();
     		background(0);
@@ -66,20 +66,23 @@ import processing.core.PApplet;
 	    		stroke(part.getSpecies(), 255 , 255);
 	    		renderParticle(part);
 	    	}
-	   }
+    	}
     	
-	   stroke(255, 0, 255);
-	   strokeWeight(1);
-	   renderLines();
-	   
-	   handleEvents();
+    	stroke(255, 0, 255);
+    	strokeWeight(1);
+    	renderLines();
+    	buttons.renderButtons();
+    	
+    	handleEvents();
     }
 
     abstract void renderParticle(Particle p);
     abstract void renderLines();
+    abstract void setupUserInterface();
     
     private void handleEvents() {
-    	if(buttons.isPressed("rewind"))
+    	buttons.checkIfClicked();
+    	if(buttons.isPressed("REWIND"))
     		if(currentStep == 0)
     			currentStep = steps.size() - 1;
     		else
@@ -94,6 +97,7 @@ import processing.core.PApplet;
     // method used only for setting the size of the window
     public void settings(){
         size((int)Math.round(displayWidth * 0.8), (int)Math.round(displayHeight * 0.8));
+//    	size(1600, 900);
     }
     
 }

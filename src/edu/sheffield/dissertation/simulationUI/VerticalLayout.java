@@ -11,4 +11,10 @@ public class VerticalLayout extends AbstractLayout {
 	void renderLines() {
 		line(0, width, width + 1, width);
 	}
+
+	@Override
+	void setupUserInterface() {
+		// TODO Auto-generated method stub
+		
+	}
 }
