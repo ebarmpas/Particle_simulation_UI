@@ -20,8 +20,12 @@ public class HorizontalLayout extends AbstractLayout {
 				new Color(255, 0, 0, this), 
 				new Color(255, 0, 255, this), 
 				margin* 3, ((width - height) / 2) - (margin * 2), height/10);
-        buttons.addButton("PAUSE", ' ', new PVector(height + margin , 0 + margin), simulationControlButtonAppearance, true);
-        buttons.addButton("REWIND", 'r', new PVector(width - margin - simulationControlButtonAppearance.getButtonWidth(), margin), simulationControlButtonAppearance);
+        pressables.addSwitch("PAUSE", ' ', new PVector(height + margin , 0 + margin), simulationControlButtonAppearance, true);
+        pressables.addSwitch("REWIND", 'r', new PVector(width - margin - simulationControlButtonAppearance.getButtonWidth(), margin), simulationControlButtonAppearance);
+      
+        pressables.addButton("+", ']',  new PVector(height + margin , 200 + margin), simulationControlButtonAppearance);
+        pressables.addButton("-", '[', new PVector(width - margin - simulationControlButtonAppearance.getButtonWidth(), 200 + margin), simulationControlButtonAppearance);
+
 		
 	}
 }

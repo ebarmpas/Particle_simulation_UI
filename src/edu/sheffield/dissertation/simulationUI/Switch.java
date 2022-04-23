@@ -3,12 +3,21 @@ package edu.sheffield.dissertation.simulationUI;
 import processing.core.PApplet;
 import processing.core.PVector;
 
-public class Button extends Clickable {
+public class Switch extends Clickable {
 
-	public Button(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, PApplet p) {
+	private boolean isPressed;
+
+	public Switch(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, PApplet p) {
 		super(assignedKey, label, handler, buttonAppearance, p);
+		
+		isPressed = false;
 	}
-	
+	public Switch(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, boolean isPressed, PApplet p) {
+		super(assignedKey, label, handler, buttonAppearance, isPressed, p);
+		
+		this.isPressed = isPressed;
+
+	}
 	@Override
 	public boolean isPressed() {
 		if(((p.mouseX >= handler.x && p.mouseX <= handler.x + buttonAppearance.getButtonWidth() && 
@@ -16,12 +25,13 @@ public class Button extends Clickable {
 				p.mousePressed ) || 
 				(p.keyPressed && p.key == assignedKey))
 				&& delay >= maxDelay) {
+				
 				delay = 0;
-				return true;
-			}else {
+				isPressed = !isPressed;
+			}else
 				delay++;
-				return false;
-			}
+			
+			return isPressed;
 	}
 
 }

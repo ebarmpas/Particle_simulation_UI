@@ -11,13 +11,15 @@ import processing.core.PApplet;
  public abstract class AbstractLayout extends PApplet {
 
 	private SimulationConfiguration simConf;
-	protected ButtonMap buttons;
+	protected ClickableMap pressables;
 	
 	private Thread fileReaderThread;
 	
 	protected List<Step> steps;
 	protected int currentStep;
 		
+	protected int activeSpecies;
+	
 	protected ButtonAppearance simulationControlButtonAppearance;
 	
     public void setup(){
@@ -42,12 +44,12 @@ import processing.core.PApplet;
 	        fileReaderThread = new Thread(fileReader);
 	        fileReaderThread.start();
 	        steps = fileReader.getValue();
-	        buttons = new ButtonMap(this);
+	        pressables = new ClickableMap(this);
 	        
 	        setupUserInterface();
 	        
 	        currentStep = 0;
-	     	        
+	        activeSpecies = 0;
 	        colorMode(HSB, simConf.getSpeciesNumber(), 255, 255);
         }else
         	exit();
@@ -55,7 +57,7 @@ import processing.core.PApplet;
  
     public void draw(){
     	
-    	if(frameCount % 3 == 0 && !buttons.isPressed("PAUSE")) {
+    	if(frameCount % 3 == 0 && !pressables.isPressed("PAUSE")) {
     		
     		List<Particle> p = steps.get(currentStep).getParticles();
     		background(0);
@@ -71,7 +73,7 @@ import processing.core.PApplet;
     	stroke(255, 0, 255);
     	strokeWeight(1);
     	renderLines();
-    	buttons.renderButtons();
+    	pressables.render();
     	
     	handleEvents();
     }
@@ -81,8 +83,7 @@ import processing.core.PApplet;
     abstract void setupUserInterface();
     
     private void handleEvents() {
-    	buttons.checkIfClicked();
-    	if(buttons.isPressed("REWIND"))
+    	if(pressables.isPressed("REWIND"))
     		if(currentStep == 0)
     			currentStep = steps.size() - 1;
     		else
