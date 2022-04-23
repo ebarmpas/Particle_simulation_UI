@@ -7,12 +7,12 @@ public class Switch extends Clickable {
 
 	private boolean isPressed;
 
-	public Switch(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, PApplet p) {
+	public Switch(char assignedKey, String label, PVector handler, ItemStyling buttonAppearance, PApplet p) {
 		super(assignedKey, label, handler, buttonAppearance, p);
 		
 		isPressed = false;
 	}
-	public Switch(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, boolean isPressed, PApplet p) {
+	public Switch(char assignedKey, String label, PVector handler, ItemStyling buttonAppearance, boolean isPressed, PApplet p) {
 		super(assignedKey, label, handler, buttonAppearance, isPressed, p);
 		
 		this.isPressed = isPressed;
@@ -20,8 +20,8 @@ public class Switch extends Clickable {
 	}
 	@Override
 	public boolean isPressed() {
-		if(((p.mouseX >= handler.x && p.mouseX <= handler.x + buttonAppearance.getButtonWidth() && 
-				p.mouseY >= handler.y && p.mouseY <= handler.y + buttonAppearance.getButtonHeight()&& 
+		if(((p.mouseX >= handler.x && p.mouseX <= handler.x + styling.getWidth() && 
+				p.mouseY >= handler.y && p.mouseY <= handler.y + styling.getHeight()&& 
 				p.mousePressed ) || 
 				(p.keyPressed && p.key == assignedKey))
 				&& delay >= maxDelay) {

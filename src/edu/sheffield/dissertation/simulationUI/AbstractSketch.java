@@ -8,20 +8,20 @@ import javax.swing.filechooser.FileNameExtensionFilter;
 
 import processing.core.PApplet;
 
- public abstract class AbstractLayout extends PApplet {
+ public abstract class AbstractSketch extends PApplet {
 
 	private SimulationConfiguration simConf;
-	protected ClickableMap pressables;
+	
+	protected ClickableMap clickables;
+	protected LabelMap labels;
 	
 	private Thread fileReaderThread;
 	
 	protected List<Step> steps;
 	protected int currentStep;
-		
+	private int stepIncrement;
 	protected int activeSpecies;
-	
-	protected ButtonAppearance simulationControlButtonAppearance;
-	
+		
     public void setup(){
         frameRate(120);
         surface.setTitle("Particle Simulation");
@@ -44,12 +44,15 @@ import processing.core.PApplet;
 	        fileReaderThread = new Thread(fileReader);
 	        fileReaderThread.start();
 	        steps = fileReader.getValue();
-	        pressables = new ClickableMap(this);
+	        
+	        clickables = new ClickableMap(this);
+	        labels = new LabelMap(this);
 	        
 	        setupUserInterface();
 	        
 	        currentStep = 0;
 	        activeSpecies = 0;
+	        
 	        colorMode(HSB, simConf.getSpeciesNumber(), 255, 255);
         }else
         	exit();
@@ -57,7 +60,7 @@ import processing.core.PApplet;
  
     public void draw(){
     	
-    	if(frameCount % 3 == 0 && !pressables.isPressed("PAUSE")) {
+    	if((frameCount % 3 == 0 && !clickables.isPressed("PAUSE")) || (clickables.isPressed("STEP") && clickables.isPressed("PAUSE"))) {
     		
     		List<Particle> p = steps.get(currentStep).getParticles();
     		background(0);
@@ -68,37 +71,37 @@ import processing.core.PApplet;
 	    		stroke(part.getSpecies(), 255 , 255);
 	    		renderParticle(part);
 	    	}
+	    	
+	    	if(currentStep == 0 && stepIncrement == -1)
+    			currentStep = steps.size() - 1;
+	    	else if(currentStep == steps.size() - 1 && stepIncrement == 1)
+    			currentStep = 0;
+	    	else
+	    		currentStep += stepIncrement;
     	}
+    	
+    	if(clickables.isPressed("INVERT"))
+    		stepIncrement = -1;
+    	else
+    		stepIncrement = 1;
     	
     	stroke(255, 0, 255);
     	strokeWeight(1);
     	renderLines();
-    	pressables.render();
+    	clickables.render();
+    	labels.render();
+    	labels.updateLabelText("Time", "Time Controls: " + currentStep + " / " + simConf.getStepNumber());
     	
-    	handleEvents();
     }
 
     abstract void renderParticle(Particle p);
     abstract void renderLines();
     abstract void setupUserInterface();
     
-    private void handleEvents() {
-    	if(pressables.isPressed("REWIND"))
-    		if(currentStep == 0)
-    			currentStep = steps.size() - 1;
-    		else
-    			currentStep--;
-    	else
-    		if(currentStep == steps.size() - 1)
-    			currentStep = 0;
-    		else
-    			currentStep++;
-    }
 
     // method used only for setting the size of the window
     public void settings(){
         size((int)Math.round(displayWidth * 0.8), (int)Math.round(displayHeight * 0.8));
-//    	size(1600, 900);
     }
     
 }

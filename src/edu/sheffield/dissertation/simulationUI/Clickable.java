@@ -1,26 +1,19 @@
 package edu.sheffield.dissertation.simulationUI;
 
 import processing.core.PApplet;
-import processing.core.PConstants;
 import processing.core.PVector;
 
-public abstract class Clickable {
+public abstract class Clickable extends Renderable {
 	protected char assignedKey;
-	protected PApplet p;
-	
-	protected String label;
-		
-	protected ButtonAppearance buttonAppearance;
-	protected PVector handler;
+
 	
 	protected int delay;
 	protected int maxDelay;
 	
-	public Clickable(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, PApplet p) {
+	public Clickable(char assignedKey, String label, PVector handler, ItemStyling styling, PApplet p) {
+		super(label, styling, handler, p);
 		this.assignedKey = assignedKey;
 		this.label = label;
-		this.handler = handler;
-		this.buttonAppearance = buttonAppearance;
 		
 		this.p = p;
 		
@@ -28,11 +21,10 @@ public abstract class Clickable {
 		maxDelay = 16;
 
 	}
-	public Clickable(char assignedKey, String label, PVector handler, ButtonAppearance buttonAppearance, boolean isPressed, PApplet p) {
-		this.assignedKey = Character.toLowerCase(assignedKey);
+	public Clickable(char assignedKey, String label, PVector handler, ItemStyling styling, boolean isPressed, PApplet p) {
+		super(label, styling, handler, p);
+		this.assignedKey = assignedKey;
 		this.label = label;
-		this.handler = handler;
-		this.buttonAppearance = buttonAppearance;
 		
 		this.p = p;
 		
@@ -41,19 +33,5 @@ public abstract class Clickable {
 	}
 
 	abstract public boolean isPressed();
-	public void render() {
-		 buttonAppearance.getStrokeColor().useStroke();
-		 buttonAppearance.getFillColor().useFill();
-		 p.rectMode(PConstants.CORNER);
-		
-		 p.rect(handler.x, handler.y, buttonAppearance.getButtonWidth(),buttonAppearance.getButtonHeight());
-		
-		 buttonAppearance.getTextColor().useFill();
-		 p.textSize(buttonAppearance.getTextSize());
-		 p.textAlign(PConstants.CENTER, PConstants.CENTER);
-		
-		 p.text(label, handler.x +  (buttonAppearance.getButtonWidth() / 2), + handler.y +  (buttonAppearance.getButtonHeight() / 2));
-	}
-	
-	
+
 }

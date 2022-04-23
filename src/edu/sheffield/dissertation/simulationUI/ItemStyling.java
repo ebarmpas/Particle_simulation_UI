@@ -1,21 +1,20 @@
 package edu.sheffield.dissertation.simulationUI;
 
-public class ButtonAppearance {
+public class ItemStyling {
 	private Color strokeColor;
 	private Color fillColor;
 	private Color textColor;
 	private int textSize;
-	private int buttonWidth;
-	private int buttonHeight;
-	public ButtonAppearance(Color strokeColor, Color fillColor, Color textColor, int textSize, int buttonWidth,
-			int buttonHeight) {
+	private int sWidth;
+	private int sHeight;
+	public ItemStyling(Color strokeColor, Color fillColor, Color textColor, int textSize, int sWidth, int sHeight) {
 		super();
 		this.strokeColor = strokeColor;
 		this.fillColor = fillColor;
 		this.textColor = textColor;
 		this.textSize = textSize;
-		this.buttonWidth = buttonWidth;
-		this.buttonHeight = buttonHeight;
+		this.sWidth = sWidth;
+		this.sHeight = sHeight;
 	}
 
 	public Color getStrokeColor() {
@@ -30,11 +29,11 @@ public class ButtonAppearance {
 	public int getTextSize() {
 		return textSize;
 	}
-	public int getButtonWidth() {
-		return buttonWidth;
+	public int getWidth() {
+		return sWidth;
 	}
-	public int getButtonHeight() {
-		return buttonHeight;
+	public int getHeight() {
+		return sHeight;
 	}
 	
 }

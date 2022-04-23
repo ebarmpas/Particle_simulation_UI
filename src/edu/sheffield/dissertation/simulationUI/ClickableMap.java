@@ -13,14 +13,14 @@ public class ClickableMap {
 		pressables = new HashMap<String, Clickable>();
 	}
 	
-	public void addSwitch(String label, char value, PVector handler, ButtonAppearance buttonAppearance) {
+	public void addSwitch(String label, char value, PVector handler, ItemStyling buttonAppearance) {
 		pressables.put(label, new Switch(value, label, handler, buttonAppearance, p));
 	}
 	
-	public void addSwitch(String label, char value, PVector handler, ButtonAppearance buttonAppearance, boolean isPressed) {
+	public void addSwitch(String label, char value, PVector handler, ItemStyling buttonAppearance, boolean isPressed) {
 		pressables.put(label, new Switch(value, label, handler, buttonAppearance, isPressed, p));
 	}
-	public void addButton(String label, char value, PVector handler, ButtonAppearance buttonAppearance) {
+	public void addButton(String label, char value, PVector handler, ItemStyling buttonAppearance) {
 		pressables.put(label, new Button(value, label, handler, buttonAppearance, p));
 	}
 	
@@ -33,16 +33,3 @@ public class ClickableMap {
 	}
 
 }
-/*if(((p.mouseX >= handler.x && p.mouseX <= handler.x + buttonAppearance.getButtonWidth() && 
-p.mouseY >= handler.y && p.mouseY <= handler.y + buttonAppearance.getButtonHeight()&& 
-p.mousePressed ) || 
-(p.keyPressed && p.key == assignedKey))
-&& delay >= maxDelay) {
-
-delay = 0;
-isPressed = !isPressed;
-}else
-delay++;
-
-return isPressed;
-*/

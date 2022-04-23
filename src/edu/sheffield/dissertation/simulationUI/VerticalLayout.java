@@ -1,6 +1,6 @@
 package edu.sheffield.dissertation.simulationUI;
 
-public class VerticalLayout extends AbstractLayout {
+public class VerticalLayout extends AbstractSketch {
 	
 	@Override
 	void renderParticle(Particle p) {

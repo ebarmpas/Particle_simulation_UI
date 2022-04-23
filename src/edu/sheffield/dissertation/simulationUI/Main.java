@@ -15,9 +15,9 @@ public class Main {
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
 		
 		if(screenSize.getWidth() > screenSize.getHeight())
-			result = "edu.sheffield.dissertation.simulationUI.HorizontalLayout";
+			result = "edu.sheffield.dissertation.simulationUI.HorizontalSketch";
 		else
-			result = "edu.sheffield.dissertation.simulationUI.VerticalLayout";
+			result = "edu.sheffield.dissertation.simulationUI.VerticalSketch";
 		return result;
 	}
 }
