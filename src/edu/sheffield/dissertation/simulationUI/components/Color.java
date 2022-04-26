@@ -1,11 +1,11 @@
-package edu.sheffield.dissertation.simulationUI;
+package edu.sheffield.dissertation.simulationUI.components;
 
 import processing.core.PApplet;
 
 public class Color {
 	 float a, b, c;
 	 PApplet p;
-	  Color(float a, float b, float c, PApplet p){
+	  public Color(float a, float b, float c, PApplet p){
 	    this.a = a;
 	    this.b = b;
 	    this.c = c;

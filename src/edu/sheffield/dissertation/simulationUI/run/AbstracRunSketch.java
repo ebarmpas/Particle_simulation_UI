@@ -1,4 +1,4 @@
-package edu.sheffield.dissertation.simulationUI;
+package edu.sheffield.dissertation.simulationUI.run;
 
 import java.io.FileNotFoundException;
 import java.util.List;
@@ -6,9 +6,12 @@ import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.filechooser.FileNameExtensionFilter;
 
+import edu.sheffield.dissertation.simulationUI.components.ClickableMap;
+import edu.sheffield.dissertation.simulationUI.components.LabelMap;
+
 import processing.core.PApplet;
 
- public abstract class AbstractSketch extends PApplet {
+ public abstract class AbstracRunSketch extends PApplet {
 
 	private SimulationConfiguration simConf;
 	

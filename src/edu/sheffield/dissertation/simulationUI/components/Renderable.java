@@ -1,4 +1,4 @@
-package edu.sheffield.dissertation.simulationUI;
+package edu.sheffield.dissertation.simulationUI.components;
 
 import processing.core.PApplet;
 import processing.core.PConstants;

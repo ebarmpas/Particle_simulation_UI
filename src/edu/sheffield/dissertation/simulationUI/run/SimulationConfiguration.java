@@ -8,7 +8,7 @@
  *  The width of the plane
  *  The height of the plane
  */
-package edu.sheffield.dissertation.simulationUI;
+package edu.sheffield.dissertation.simulationUI.run;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.Serializable;

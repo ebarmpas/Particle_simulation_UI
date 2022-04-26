@@ -1,8 +1,11 @@
-package edu.sheffield.dissertation.simulationUI;
+package edu.sheffield.dissertation.simulationUI.run;
+
+import edu.sheffield.dissertation.simulationUI.components.Color;
+import edu.sheffield.dissertation.simulationUI.components.ItemStyling;
 
 import processing.core.PVector;
 
-public class HorizontalSketch extends AbstractSketch {
+public class HorizontalRunSketch extends AbstracRunSketch {
 	final int margin = Math.round(width/8);
 	private ItemStyling timeManipulationButtonStyling, timeManipulatonLabelStyling;
 

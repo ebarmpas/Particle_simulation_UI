@@ -1,4 +1,4 @@
-package edu.sheffield.dissertation.simulationUI;
+package edu.sheffield.dissertation.simulationUI.components;
 
 public class ItemStyling {
 	private Color strokeColor;
