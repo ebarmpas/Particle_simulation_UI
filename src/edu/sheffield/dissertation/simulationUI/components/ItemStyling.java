@@ -5,16 +5,16 @@ public class ItemStyling {
 	private Color fillColor;
 	private Color textColor;
 	private int textSize;
-	private int sWidth;
-	private int sHeight;
+	private int width;
+	private int height;
 	public ItemStyling(Color strokeColor, Color fillColor, Color textColor, int textSize, int sWidth, int sHeight) {
 		super();
 		this.strokeColor = strokeColor;
 		this.fillColor = fillColor;
 		this.textColor = textColor;
 		this.textSize = textSize;
-		this.sWidth = sWidth;
-		this.sHeight = sHeight;
+		this.width = sWidth;
+		this.height = sHeight;
 	}
 
 	public Color getStrokeColor() {
@@ -30,10 +30,10 @@ public class ItemStyling {
 		return textSize;
 	}
 	public int getWidth() {
-		return sWidth;
+		return width;
 	}
 	public int getHeight() {
-		return sHeight;
+		return height;
 	}
 	
 }

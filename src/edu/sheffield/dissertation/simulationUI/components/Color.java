@@ -1,24 +1,32 @@
 package edu.sheffield.dissertation.simulationUI.components;
 
-import processing.core.PApplet;
-
 public class Color {
-	 float a, b, c;
-	 PApplet p;
-	  public Color(float a, float b, float c, PApplet p){
+	 private float a, b, c;
+	  public Color(float a, float b, float c){
 	    this.a = a;
 	    this.b = b;
 	    this.c = c;
-	    this.p = p;
 	  }
+	public float getA() {
+		return a;
+	}
+	public void setA(float a) {
+		this.a = a;
+	}
+	public float getB() {
+		return b;
+	}
+	public void setB(float b) {
+		this.b = b;
+	}
+	public float getC() {
+		return c;
+	}
+	public void setC(float c) {
+		this.c = c;
+	}
 	  
-	  void useStroke(){
-	    p.stroke(a,b,c);
-	  }
-	  
-	  void useFill(){
-	    p.fill(a,b,c);
-	  }
+
 	  
 	  
 }

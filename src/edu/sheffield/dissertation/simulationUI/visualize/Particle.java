@@ -1,4 +1,4 @@
-package edu.sheffield.dissertation.simulationUI.run;
+package edu.sheffield.dissertation.simulationUI.visualize;
 
 import processing.core.PVector;
 

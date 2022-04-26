@@ -1,4 +1,4 @@
-package edu.sheffield.dissertation.simulationUI.run;
+package edu.sheffield.dissertation.simulationUI.visualize;
 
 import java.io.File;
 import java.io.FileNotFoundException;
