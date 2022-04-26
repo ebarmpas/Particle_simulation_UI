@@ -24,6 +24,7 @@ private SimulationConfiguration simConf;
 	protected List<Step> steps;
 	protected int currentStep;
 	private int stepIncrement;
+	private int deltaTime;
 	protected int activeSpecies;
 	
 	protected PApplet applet;
@@ -54,7 +55,7 @@ private SimulationConfiguration simConf;
 		        
 		        currentStep = 0;
 		        activeSpecies = 0;
-		        
+		        deltaTime = 3;
 		        applet.colorMode(PConstants.HSB, simConf.getSpeciesNumber(), 255, 255);
 	        }else {
 	        	applet.exitActual();
@@ -63,7 +64,7 @@ private SimulationConfiguration simConf;
  
     public int step(){
     	
-    	if((applet.frameCount % 3 == 0 && !clickables.isPressed("PAUSE")) || (clickables.isPressed("STEP") && clickables.isPressed("PAUSE"))) {
+    	if((applet.frameCount % deltaTime == 0 && !clickables.isPressed("PAUSE")) || (clickables.isPressed("STEP") && clickables.isPressed("PAUSE"))) {
     		
     		List<Particle> p = steps.get(currentStep).getParticles();
     		applet.background(0);
@@ -88,12 +89,19 @@ private SimulationConfiguration simConf;
     	else
     		stepIncrement = 1;
     	
+    	if(clickables.isPressed("Speed +"))
+    		if(deltaTime > 1)
+       			deltaTime--;
+    	
+    	if(clickables.isPressed("Speed -"))
+    		deltaTime++;
+    	
     	applet.stroke(255, 0, 255);
     	applet.strokeWeight(1);
     	renderLines();
     	clickables.render();
     	labels.render();
-    	labels.updateLabelText("Time", "Time Controls: " + currentStep + " / " + simConf.getStepNumber());
+    	labels.updateLabelText("Time", "Current step: " + currentStep + " / " + simConf.getStepNumber() + "  Current delta time: " + deltaTime);
 		return -1;
     }
 

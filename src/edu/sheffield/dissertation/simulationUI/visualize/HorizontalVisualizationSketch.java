@@ -33,12 +33,12 @@ public class HorizontalVisualizationSketch extends AbstractVisualizationSketch {
 		timeManipulatonLabelStyling = new ItemStyling(new Color(255, 0, 255), 
 				new Color(255, 0, 0), 
 				new Color(255, 0, 255), 
-				margin * 3, (applet.width - applet.height) - (margin * 2), applet.height / 16);
+				margin * 2, (applet.width - applet.height) - (margin * 2), applet.height / 16);
 		
 		timeManipulationButtonStyling = new ItemStyling(new Color(255, 0, 255), 
 				new Color(255, 0, 0), 
 				new Color(255, 0, 255), 
-				margin * 3, timeManipulatonLabelStyling.getWidth() / 3, applet.height / 16);
+				margin * 2, timeManipulatonLabelStyling.getWidth() / 5, applet.height / 16);
 		
 		applet.background(0);
 		
@@ -46,9 +46,10 @@ public class HorizontalVisualizationSketch extends AbstractVisualizationSketch {
 		currentY += timeManipulatonLabelStyling.getHeight() + margin;
         clickables.addSwitch("PAUSE", ' ', new PVector(baselineX ,  currentY), timeManipulationButtonStyling, true);
         clickables.addSwitch("INVERT", 'r', new PVector(baselineX + timeManipulationButtonStyling.getWidth(), currentY), timeManipulationButtonStyling);
-        clickables.addButton("STEP", 's', new PVector(baselineX+ timeManipulationButtonStyling.getWidth() * 2, currentY), timeManipulationButtonStyling);
-        currentY += timeManipulationButtonStyling.getHeight();
-
-		
+        clickables.addButton("STEP", 's', new PVector(baselineX + timeManipulationButtonStyling.getWidth() * 2, currentY), timeManipulationButtonStyling);
+        clickables.addButton("Speed -", '-', new PVector(baselineX + timeManipulationButtonStyling.getWidth() * 3, currentY), timeManipulationButtonStyling);
+        clickables.addButton("Speed +", '+', new PVector(baselineX + timeManipulationButtonStyling.getWidth() * 4, currentY), timeManipulationButtonStyling);
+        currentY += timeManipulationButtonStyling.getHeight() + margin;
+	
 	}
 }
