@@ -1,8 +1,8 @@
 package edu.sheffield.dissertation.simulationUI;
 
 import edu.sheffield.dissertation.simulationUI.components.ProcessingRunnable;
-import edu.sheffield.dissertation.simulationUI.setup.AbstractSetupSketch;
-import edu.sheffield.dissertation.simulationUI.visualize.HorizontalVisualizationSketch;
+import edu.sheffield.dissertation.simulationUI.setup.SetupSketch;
+import edu.sheffield.dissertation.simulationUI.visualize.VisualizationSketch;
 import processing.core.PApplet;
 
 public class Sketch extends PApplet{
@@ -15,8 +15,6 @@ public class Sketch extends PApplet{
 	     background(0);
 
 	     mode = 1;
-
-//	     sim.processingSetup();
 	}
 	
 	public void draw() {
@@ -24,11 +22,12 @@ public class Sketch extends PApplet{
 		if(mode == 0)
 			exit();
 		else if(mode == 1)
-			current = new AbstractSetupSketch(this);
+			current = new SetupSketch(this);
 		else if(mode == 2)
 			System.out.println("New sim");
 		else if(mode == 3) {
-			current = new HorizontalVisualizationSketch(this);
+			current = new VisualizationSketch(this);
+
 		}
 		mode = current.step();
 

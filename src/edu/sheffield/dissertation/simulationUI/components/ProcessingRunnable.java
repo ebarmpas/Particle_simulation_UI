@@ -1,6 +1,13 @@
 package edu.sheffield.dissertation.simulationUI.components;
 
-public interface ProcessingRunnable {
+import processing.core.PApplet;
 
-	int step();
+public abstract class ProcessingRunnable {
+
+	protected PApplet applet;
+	
+	protected ClickableMap clickables;
+	protected LabelMap labels;
+	
+	public abstract int step();
 }

@@ -4,22 +4,23 @@ import edu.sheffield.dissertation.simulationUI.components.ClickableMap;
 import edu.sheffield.dissertation.simulationUI.components.Color;
 import edu.sheffield.dissertation.simulationUI.components.ItemStyling;
 import edu.sheffield.dissertation.simulationUI.components.ProcessingRunnable;
-
+import edu.sheffield.dissertation.simulationUI.components.UseColor;
 import processing.core.PApplet;
+import processing.core.PConstants;
 import processing.core.PVector;
 
-public class AbstractSetupSketch implements ProcessingRunnable {
-
-	private ClickableMap clickables;
-	PApplet applet;
-	public AbstractSetupSketch(PApplet applet) {
+public class SetupSketch extends ProcessingRunnable {
+	
+	private ItemStyling buttonStyling;
+	public SetupSketch(PApplet applet) {
 		this.applet = applet;
 		
-		PApplet.println(applet.width, applet.height);
+//		PApplet.println(applet.width, applet.height);
+		applet.colorMode(PConstants.RGB);
 		clickables = new ClickableMap(applet);
-		ItemStyling buttonStyling = new ItemStyling(new Color(255, 255, 255), 
-				new Color(0, 0, 0), 
-				new Color(255, 255, 255), 
+		buttonStyling = new ItemStyling(new Color(255F, 255F, 255F), 
+				new Color(0F, 0F, 0F), 
+				new Color(255F, 255F, 255F), 
 				(applet.width - applet.height) / 10, applet.width / 3, applet.height / 4);
 		
 		
@@ -30,7 +31,10 @@ public class AbstractSetupSketch implements ProcessingRunnable {
 
 
 	public int step() {
+		applet.background(0);
 		clickables.render();
+		
+		
 		
 		if(clickables.isPressed("Exit"))
 			return 0;

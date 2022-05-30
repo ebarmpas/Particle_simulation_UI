@@ -20,7 +20,7 @@ public class FileReader implements Runnable {
 		System.out.println("Starting to parse files...");
 		for(int i = 0; i < stepNum; i++) {
 			try {
-				steps.add(new Step(simConf.getOutputDir()+"/steps/step"+i));
+				steps.add(new Step(simConf.getOutputDir(), simConf.getSpeciesNumber(), i));
 			} catch (FileNotFoundException e) {
 				e.printStackTrace();
 			}
