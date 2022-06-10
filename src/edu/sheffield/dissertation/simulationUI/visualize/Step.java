@@ -32,8 +32,7 @@ public class Step extends PApplet{
 					s.getDouble("damage"),
 					s.getDouble("libido"),
 					s.getDouble("age"),
-					s.getDouble("health"),
-					s.getDouble("energy")));
+					s.getDouble("health")));
 			scan.close();
 			
 			capacity += s.getInt("count");

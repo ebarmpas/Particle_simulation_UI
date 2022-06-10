@@ -14,12 +14,11 @@ public class Stats {
 	private double libido;
 	private double age;
 	private double health;
-	private double energy;
 	
 	
 	
 	public Stats(int count, double attractionMultiplier, double repulsionMultiplier, double forceMultiplier, double visionRange,
-			double damage, double libido, double age, double health, double energy) {
+			double damage, double libido, double age, double health) {
 		this.count = count;
 
 		this.attractionMultiplier = attractionMultiplier;
@@ -32,7 +31,6 @@ public class Stats {
 		this.libido = libido;
 		this.age = age;
 		this.health = health;
-		this.energy = energy;
 	}
 	public int getCount() {
 		return count;
@@ -61,9 +59,5 @@ public class Stats {
 	public double getHealth() {
 		return health;
 	}
-	public double getEnergy() {
-		return energy;
-	}
-	
 	
 }

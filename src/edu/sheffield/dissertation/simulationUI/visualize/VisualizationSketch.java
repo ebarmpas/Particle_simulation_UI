@@ -20,8 +20,7 @@ public class VisualizationSketch extends ProcessingRunnable{
 
 	private ItemStyling timeManipulationButtonStyling, timeManipulatonLabelStyling;
 	private ItemStyling speciesLabelStyling, speciesSelectStyling;
-	private ItemStyling backButtonStyling;
-	
+
 	private SimulationConfiguration simConf;	
 	private Thread fileReaderThread;
 	
@@ -73,9 +72,7 @@ public class VisualizationSketch extends ProcessingRunnable{
 	        }
 	}
  
-    @SuppressWarnings("deprecation")
-	public int step(){
-    	
+    public int step(){
     	if((applet.frameCount % deltaTime == 0 && !clickables.isPressed("PAUSE")) || (clickables.isPressed("STEP") && clickables.isPressed("PAUSE"))) {
     		
     		List<Agent> p =  steps.get(currentStep).getAgents();
@@ -107,7 +104,6 @@ public class VisualizationSketch extends ProcessingRunnable{
 	    	labels.updateLabelText("libido", "MAX LIBIDO: " + s.getLibido());
 	    	labels.updateLabelText("health", "MAX HEALTH: " + s.getHealth());
 	    	labels.updateLabelText("age", "MAX AGE: " + s.getAge());
-	    	labels.updateLabelText("energy", "MAX ENERGY: " + s.getEnergy());
     	}
     	
     	if(clickables.isPressed("INVERT"))
@@ -145,12 +141,7 @@ public class VisualizationSketch extends ProcessingRunnable{
     	labels.render();
    
     	
-    	if(clickables.isPressed("BACK")) {
-    		fileReaderThread.stop();
-    		return 1;
-    	}	
-    	else
-    		return -1;
+    	return 0;
     }
 
     void renderAgent(Agent a) {
@@ -184,11 +175,7 @@ public class VisualizationSketch extends ProcessingRunnable{
 				new Color(0, 0, 0), 
 				new Color(0, 0, 255), 
 				margin * 2, (timeManipulatonLabelStyling.getWidth() / 2) - (margin / 2) , timeManipulatonLabelStyling.getHeight());
-		 backButtonStyling =  new ItemStyling(new Color(0, 0, 255), 
-				new Color(0, 0, 0), 
-				new Color(0, 0, 255), 
-				margin * 2, (timeManipulatonLabelStyling.getWidth() - (margin * 4)) / 5, timeManipulatonLabelStyling.getHeight() * 2 / 3);
-		   
+				   
 		applet.background(0);
 		
 		labels.addLabel("Time", "TIME CONTROLS", new PVector(baselineX , margin), timeManipulatonLabelStyling);
@@ -199,7 +186,7 @@ public class VisualizationSketch extends ProcessingRunnable{
         clickables.addButton("SPEED -", '-', new PVector(baselineX + timeManipulationButtonStyling.getWidth() * 3 + margin * 3, currentY), timeManipulationButtonStyling);
         clickables.addButton("SPEED +", '+', new PVector(baselineX + timeManipulationButtonStyling.getWidth() * 4 + margin * 4, currentY), timeManipulationButtonStyling);
         currentY += timeManipulationButtonStyling.getHeight() + margin;
-        labels.addLabel("Species", "Species: 0", new PVector(baselineX, currentY), speciesLabelStyling);
+        labels.addLabel("Species", "SPECIES: 0", new PVector(baselineX, currentY), speciesLabelStyling);
         currentY += speciesLabelStyling.getHeight() + margin;
         clickables.addButton("PREVIOUS SPECIES", '[', new PVector(baselineX, currentY), speciesSelectStyling);
         clickables.addButton("NEXT SPECIES", ']', new PVector(baselineX + speciesSelectStyling.getWidth() + margin, currentY), speciesSelectStyling);
@@ -222,12 +209,7 @@ public class VisualizationSketch extends ProcessingRunnable{
         labels.addLabel("health", "MAX HEALTH: ", new PVector(baselineX, currentY), speciesLabelStyling);
         currentY += speciesLabelStyling.getHeight() + margin;
         labels.addLabel("age", "MAX AGE: ", new PVector(baselineX, currentY), speciesLabelStyling);
-        currentY += speciesLabelStyling.getHeight() + margin;
-        labels.addLabel("energy", "MAX ENERGY: ", new PVector(baselineX, currentY), speciesLabelStyling);
-        currentY += speciesLabelStyling.getHeight() + margin;
-        
-        clickables.addButton("BACK", '`',  new PVector(applet.width - backButtonStyling.getWidth() - margin, currentY), backButtonStyling);
-        
+        currentY += speciesLabelStyling.getHeight() + margin;   
     }
     
     private void updateSpeciesStyling(ItemStyling s) {
